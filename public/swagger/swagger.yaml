@@ -1,0 +1,343 @@
+swagger: "2.0"
+info:
+  description: Extenship Article API
+  version: 1.0.0
+  title: Extenship Article API
+basePath: "/api"
+paths:
+  /auth/user:
+    post:
+      tags:
+      - "auth"
+      summary: "New User"
+      description: "This can only be done by the logged in user."
+      operationId: "createUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "query"
+        description: "The user name for register"
+        required: true
+        type: "string"
+      - name: "email"
+        in: "query"
+        description: "The email for register"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for register"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /auth/login:
+    get:
+      tags:
+      - "auth"
+      summary: "Logs user into the system"
+      description: ""
+      operationId: "loginUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "query"
+        description: "The email for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "string"
+        "400":
+          description: "Invalid username/password supplied"
+  /articles:
+    get:
+      tags:
+      - "articles"
+      summary: "Get Articles"
+      description: "All articles are listed."
+      operationId: "getArticles"
+      produces:
+      - "application/json"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "articles"
+      summary: "New Article"
+      description: "Create new article."
+      operationId: "createArticle"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user_id"
+        in: "query"
+        description: "The user id for create article"
+        required: true
+        type: "integer"
+      - name: "content"
+        in: "query"
+        description: "The content for create article"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"     
+  /articles/{articleId}:         
+    get:
+      tags:
+      - "articles"
+      summary: "Select Article"
+      description: "Select article."
+      operationId: "selectArticle"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "The article id for select article"
+        required: true
+        type: "integer"
+      responses:
+        default:
+          description: "successful operation"    
+    put:
+      tags:
+      - "articles"
+      summary: "Update Article"
+      description: "Update article."
+      operationId: "updateArticle"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user_id"
+        in: "query"
+        description: "The user id for update article"
+        required: true
+        type: "integer"
+      - name: "content"
+        in: "query"
+        description: "The content for update article"
+        required: true
+        type: "string"
+      - name: "article_id"
+        in: "query"
+        description: "The article id for update article"
+        required: true
+        type: "integer"  
+      responses:
+        default:
+          description: "successful operation"    
+    delete:
+      tags:
+      - "articles"
+      summary: "Delete Article"
+      description: "Delete article."
+      operationId: "deleteArticle"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "The article id for delete article"
+        required: true
+        type: "integer"  
+      responses:
+        default:
+          description: "successful operation"   
+  /comments:
+    get:
+      tags:
+      - "comments"
+      summary: "Get Comments"
+      description: "All comments are listed."
+      operationId: "getComments"
+      produces:
+      - "application/json"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "comments"
+      summary: "New Comments"
+      description: "Create new comments."
+      operationId: "createComments"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user_id"
+        in: "query"
+        description: "The user id for create comment"
+        required: true
+        type: "integer"
+      - name: "article_id"
+        in: "query"
+        description: "The article id for create comment"
+        required: true
+        type: "integer"  
+      - name: "content"
+        in: "query"
+        description: "The content for create comment"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"     
+  /comments/{commentId}:         
+    get:
+      tags:
+      - "comments"
+      summary: "Select Comment"
+      description: "Select comment."
+      operationId: "selectComment"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "The comment id for select article"
+        required: true
+        type: "integer"
+      responses:
+        default:
+          description: "successful operation"    
+    put:
+      tags:
+      - "comments"
+      summary: "Update Comment"
+      description: "Update comment."
+      operationId: "updateComment"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user_id"
+        in: "query"
+        description: "The user id for update comment"
+        required: true
+        type: "integer"
+      - name: "content"
+        in: "query"
+        description: "The content for update comment"
+        required: true
+        type: "string"
+      - name: "article_id"
+        in: "query"
+        description: "The article id for update comment"
+        required: true
+        type: "integer"  
+      - name: "id"
+        in: "query"
+        description: "The comment id for update comment"
+        required: true
+        type: "integer"  
+      responses:
+        default:
+          description: "successful operation"    
+    delete:
+      tags:
+      - "comments"
+      summary: "Delete Comment"
+      description: "Delete comment."
+      operationId: "deleteComment"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "The comment id for delete article"
+        required: true
+        type: "integer"  
+      responses:
+        default:
+          description: "successful operation"   
+  /article-by-comment:
+    get:
+      tags:
+      - "article-by-comment"
+      summary: "Select Article By Comment"
+      description: "Select Article By Comment"
+      operationId: "selectArticleByComment"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "The comment id for select article"
+        required: true
+        type: "integer"
+      responses:
+        default:
+          description: "successful operation"
+  /comments-by-article:
+    get:
+      tags:
+      - "comments-by-article"
+      summary: "Select Comments By Article"
+      description: "Select Comments By Article"
+      operationId: "selectCommentsByArticle"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "The article id for select comments"
+        required: true
+        type: "integer"
+      responses:
+        default:
+          description: "successful operation"
+  /comments-by-user:
+    get:
+      tags:
+      - "comments-by-user"
+      summary: "Select Comments By User"
+      description: "Select Comments By User"
+      operationId: "selectCommentsByUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "The user id for select comments"
+        required: true
+        type: "integer"
+      responses:
+        default:
+          description: "successful operation"
+  /articles-by-user:
+    get:
+      tags:
+      - "articles-by-user"
+      summary: "Select Articles By User"
+      description: "Select Articles By User"
+      operationId: "selectArticlesByUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "The user id for select articles"
+        required: true
+        type: "integer"
+      responses:
+        default:
+          description: "successful operation"                                               
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  
