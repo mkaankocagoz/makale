@@ -20,14 +20,7 @@ use App\Http\Controllers\Api\UserController;
 |
 */
 
-/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
-
 Route::middleware(['auth:sanctum'])->group(function () {
-    /*Route::get('/profile', function (Request $request) {
-        return $request->user();
-    });*/
 
     Route::resource('articles', ArticleController::class);
     Route::resource('comments', CommentController::class);
